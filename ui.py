@@ -16,6 +16,8 @@ def create_map(df):
         iframe = folium.IFrame('Country: ' + str(row["COUNTRY"]))
         popup = folium.Popup(iframe, min_width=300, max_width=300)
         folium.Marker(location=[row['LONGTITUDE'], row['LATITUDE']], popup=popup).add_to(var)
+
+
     return var
 
 # Function to filter countries and create map
@@ -26,6 +28,7 @@ def printmap(selected_countries, df):
         iframe = folium.IFrame('Country: ' + str(row["COUNTRY"]))
         popup = folium.Popup(iframe, min_width=300, max_width=300)
         folium.Marker(location=[row['LONGTITUDE'], row['LATITUDE']], popup=popup).add_to(var)
+
     return var
 
 # Streamlit app
@@ -50,7 +53,7 @@ st.write(f"### Selected Trip Duration: {selected_days}")
 
 if selected_days == '19N/20D':
     st.write(f"For the 9 nights and 10 days, your countries are: {n19}")
-    selection = st.sidebar.multiselect("From these countries enter one which you would like to eliminate", selection19)
+    selection = st.sidebar.selectbox("From these countries enter one which you would like to eliminate", selection19)
     if selection:
         m = [country for country in n19 if country not in selection]
         m.append('FRANCE')
@@ -61,7 +64,7 @@ if selected_days == '19N/20D':
 
 elif selected_days == '29N/30D':
     st.write(f"For the 29 nights and 30 days, your countries are: {n29}")
-    selection = st.sidebar.multiselect("From these countries enter one which you would like to eliminate", selection29)
+    selection = st.sidebar.selectbox("From these countries enter one which you would like to eliminate", selection29)
     if selection:
         m = [country for country in n29 if country not in selection]
         m.append('FRANCE')
@@ -78,6 +81,4 @@ elif selected_days == '39N/40D':
 
 else:
     st.write("Invalid input")
-
-
-
+    
