@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import folium_static
+
 import warnings 
 warnings.filterwarnings('ignore')
 
@@ -51,7 +52,7 @@ selected_days = st.sidebar.selectbox("Select Trip Duration", days)
 st.write(f"### Selected Trip Duration: {selected_days}")
 
 if selected_days == '19N/20D':
-    st.write(f"For the 19 nights and 20 days, your countries are: ")
+    st.write(f"For the 19 nights and 20 days: ")
     st.sidebar.write("Your Entry and Exit Points are Switzerland and Denmark select any 5 countries you wish to visit:")
     selection = [country for country in selection19 if st.sidebar.checkbox(country, value=False)]
     
@@ -64,7 +65,7 @@ if selected_days == '19N/20D':
         folium_static(map_)
 
 elif selected_days == '29N/30D':
-    st.write(f"For the 29 nights and 30 days, your countries are: ")
+    st.write(f"For the 29 nights and 30 days: ")
     st.sidebar.write("Your Entry and Exit Points are Switzerland and Denmark select any 8 countries you wish to visit:")
     selection = [country for country in selection29 if st.sidebar.checkbox(country, value=False)]
     
@@ -77,8 +78,9 @@ elif selected_days == '29N/30D':
         folium_static(map_)
 
 elif selected_days == '39N/40D':
-    st.write(f"For the 39 nights and 40 days, your countries are:")
-    st.write(f"Your selected countries are:")
+    st.write(f"For the 39 nights and 40 days")
+    st.write(f"Your selected countries are: ")
+    st.caption("FRANCE, BELGIUM, LUXEMBOURG, NETHERLANDS, DENMARK, GERMANY, CZECHIA, AUSTRIA, HUNGARY, SWITZERLAND, ITALY and SPAIN")
     map_ = printmap(n39, df2)
     folium_static(map_)
 
