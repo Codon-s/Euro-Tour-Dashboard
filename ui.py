@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Load the data
-@st.cache
+
 def load_data():
     df = pd.read_excel('./country_coordinates.xlsx')
     return df
@@ -53,23 +53,26 @@ st.write(f"### Selected Trip Duration: {selected_days}")
 
 if selected_days == '19N/20D':
     st.write(f"For the 19 nights and 20 days: ")
-    st.sidebar.write("Your Entry and Exit Points are Switzerland and Denmark select any 5 countries you wish to visit:")
+    st.sidebar.write("Your Entry and Exit Points are Switzerland and Denmark select any 5 more countries you wish to visit:")
     selection = [country for country in selection19 if st.sidebar.checkbox(country, value=False)]
     
     if selection:
+
         m = [country for country in n19 if country in selection]
         m.append('FRANCE')
         m.append('DENMARK')
         st.write(f"Your selected countries are: ")
         map_ = printmap(m, df2)
         folium_static(map_)
+        
 
 elif selected_days == '29N/30D':
     st.write(f"For the 29 nights and 30 days: ")
-    st.sidebar.write("Your Entry and Exit Points are Switzerland and Denmark select any 8 countries you wish to visit:")
+    st.sidebar.write("Your Entry and Exit Points are Switzerland and Denmark select any 8 more countries you wish to visit:")
     selection = [country for country in selection29 if st.sidebar.checkbox(country, value=False)]
-    
+
     if selection:
+
         m = [country for country in n29 if country in selection]
         m.append('FRANCE')
         m.append('DENMARK')
